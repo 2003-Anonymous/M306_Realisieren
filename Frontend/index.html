@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fahrzeugverwaltung</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>Fahrzeugverwaltung</h1>
+  </div>
+  <div class="header-actions">
+    <button class="btn btn-ghost" id="btn-home">← Übersicht</button>
+    <button class="btn btn-primary" id="btn-add">+ Fahrzeug</button>
+  </div>
+</header>
+
+<main>
+  <div id="home-view">
+    <p class="page-title">Kategorien</p>
+    <div class="kategorie-grid" id="kategorie-grid"></div>
+  </div>
+
+  <div id="category-view" style="display:none">
+    <div class="category-header">
+      <p class="page-title" id="category-title"></p>
+    </div>
+    <div class="fahrzeug-grid" id="fahrzeug-grid"></div>
+  </div>
+</main>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal-box">
+    <div class="modal-header">
+      <h3 id="modal-title">–</h3>
+      <button class="btn-close-x" id="btn-close-modal" aria-label="Schliessen">×</button>
+    </div>
+
+    <div id="panel-form">
+      <form id="fahrzeug-form" novalidate>
+        <div class="modal-body">
+          <input type="hidden" id="form-id" />
+          <div class="form-grid">
+            <div class="form-group full">
+              <label for="form-name">Name / Bezeichnung *</label>
+              <input type="text" id="form-name" placeholder="z.B. BMW M4" required />
+            </div>
+            <div class="form-group">
+              <label for="form-kategorie">Kategorie *</label>
+              <select id="form-kategorie" required>
+                <option value="Auto">Auto</option>
+                <option value="Flugzeug">Flugzeug</option>
+                <option value="Schiff">Schiff</option>
+                <option value="Motorrad">Motorrad</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="form-geschwindigkeit">Höchstgeschwindigkeit (km/h) *</label>
+              <input type="number" id="form-geschwindigkeit" placeholder="250" min="1" required />
+            </div>
+            <div class="form-group full">
+              <label for="form-groesse">Grösse / Länge / Höhe *</label>
+              <input type="text" id="form-groesse" placeholder="z.B. 4.79 m Länge" required />
+            </div>
+            <div class="form-group">
+              <label for="form-letzter-service">Letzter Service *</label>
+              <input type="date" id="form-letzter-service" required />
+            </div>
+            <div class="form-group">
+              <label for="form-naechster-service">Nächster Service *</label>
+              <input type="date" id="form-naechster-service" required />
+            </div>
+            <div class="form-group full">
+              <label for="form-bild">Bild-URL (optional)</label>
+              <input type="text" id="form-bild" placeholder="https://... oder images/datei.jpg" />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" id="btn-cancel">Abbrechen</button>
+          <button type="submit" class="btn btn-primary" id="btn-save">Speichern</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="panel-detail" style="display:none">
+      <div class="modal-body" id="detail-content"></div>
+    </div>
+  </div>
+</div>
+
+
+<script src="js/Fahrzeug.js"></script>
+<script src="js/Auto.js"></script>
+<script src="js/Flugzeug.js"></script>
+<script src="js/Schiff.js"></script>
+<script src="js/Motorrad.js"></script>
+<script src="js/FahrzeugManager.js"></script>
+<script src="js/UIController.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

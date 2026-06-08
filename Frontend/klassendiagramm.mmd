@@ -1,0 +1,72 @@
+classDiagram
+    direction TB
+
+    class Fahrzeug {
+        +String _id
+        +String name
+        +String kategorie
+        +Number hoechstgeschwindigkeit
+        +String groesse
+        +String letzterService
+        +String naechsterService
+        +String bild
+        +create(data)$ Fahrzeug
+        +fromJSON(data)$ Fahrzeug
+        +toJSON() Object
+        +get speedDisplay() String
+        +get serviceStatus() String
+        +get serviceStatusClass() String
+        -generateId()$ String
+    }
+
+    class Auto {
+        +get speedDisplay() String
+    }
+
+    class Flugzeug {
+        +get speedDisplay() String
+    }
+
+    class Schiff {
+        +get speedDisplay() String
+    }
+
+    class Motorrad {
+        +get speedDisplay() String
+    }
+
+    class FahrzeugManager {
+        +KATEGORIEN$ Array
+        -String base
+        -toFrontend(d) Object
+        -toBackend(f) Object
+        +getAll() Promise~Fahrzeug[]~
+        +getById(id) Promise~Fahrzeug~
+        +getByKategorie(kat) Promise~Fahrzeug[]~
+        +add(data) Promise~Fahrzeug~
+        +update(id, data) Promise~Fahrzeug~
+        +delete(id) Promise~Boolean~
+    }
+
+    class UIController {
+        -FahrzeugManager mgr
+        -String currentKat
+        +showHome()
+        +showKategorie(kat)
+        +openForm(id)
+        +openDetail(id)
+        +confirmDelete(id)
+        +closeModal()
+        -submitForm()
+        -renderKategorien()
+        -renderFahrzeuge(kat)
+        -loadWikiImage(imgEl)
+        -toast(msg)
+    }
+
+    Fahrzeug <|-- Auto
+    Fahrzeug <|-- Flugzeug
+    Fahrzeug <|-- Schiff
+    Fahrzeug <|-- Motorrad
+    UIController --> FahrzeugManager : nutzt
+    FahrzeugManager ..> Fahrzeug : erstellt
